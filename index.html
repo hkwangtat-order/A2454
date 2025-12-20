@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta property="og:title" content="竹虎京堂 - 專用電子落單表">
+    <meta property="og:title" content="九丁目 - 專用電子落單表">
     <meta property="og:description" content="香港宏達有限公司提供">
     
-    <title>竹虎京堂 - 專用訂貨單</title>
+    <title>九丁目 - 專用訂貨單</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     
@@ -30,14 +30,13 @@
         .p-name { font-size: 1.1rem; font-weight: 700; color: #000; line-height: 1.3; margin-bottom: 2px; }
         .p-code { font-size: 0.85rem; color: #888; font-weight: normal; font-family: Arial, sans-serif; }
         
-        /* 數量控制區樣式優化 */
+        /* 數量控制區樣式 */
         .qty-control { display: flex; align-items: center; background: #fff; border: 1px solid #ced4da; border-radius: 8px; width: 120px; justify-content: space-between; height: 38px; flex-shrink: 0; overflow: hidden; }
         .qty-btn { width: 35px; height: 100%; border-radius: 0; background: #f8f9fa; color: #212529; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 1.2rem; user-select: none; border: none; }
         .qty-btn:active { background: #ffc107; }
         .qty-input { width: 50px; text-align: center; border: none; font-weight: bold; font-size: 1.1rem; color: #333; background: transparent; padding: 0; }
         
-        /* KG 模式下的輸入框樣式 */
-        .qty-input.unit-kg { color: #d63384; font-size: 1rem; } /* 桃紅色顯示 KG */
+        .qty-input.unit-kg { color: #d63384; font-size: 1rem; } 
 
         .product-row.selected { background-color: #fff9db; border-left: 5px solid #ffc107; }
 
@@ -55,7 +54,7 @@
         .modal-header { background-color: #212529; color: white; }
         .modal-title { font-weight: bold; color: #ffc107; }
         
-        /* 單位選擇 Modal 樣式 */
+        /* 單位選擇 Modal */
         .unit-btn-group { display: flex; gap: 15px; justify-content: center; padding: 20px; }
         .btn-unit-select { flex: 1; padding: 15px; border: 2px solid #ddd; border-radius: 10px; background: white; font-weight: bold; font-size: 1.1rem; text-align: center; cursor: pointer; transition: all 0.2s; }
         .btn-unit-select:hover { background-color: #f8f9fa; }
@@ -69,8 +68,8 @@
 <div class="sticky-header-container">
     <div class="top-info d-flex justify-content-between align-items-center">
         <div>
-            <div class="client-name">竹虎京堂</div>
-            <div style="font-size: 0.8rem; color: #ccc;">A2454</div>
+            <div class="client-name">九丁目</div>
+            <div style="font-size: 0.8rem; color: #ccc;">A2262A</div>
         </div>
         <div style="text-align: right; font-size: 0.8rem; color: #ccc;">
             宏達批發<br>Tel: 63771688
@@ -150,20 +149,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // === 1. 稱重產品清單 (需要觸發彈窗的代碼) ===
+    // === 1. 稱重產品清單 ===
     const weightedProducts = [
         "D61B", "D61C", "D18", "D18A", "D17D", 
         "D17DD", "D17G", "D17DE", "D17E", "D17C", 
         "D71", "D70"
     ];
 
-    // === 2. 客戶常用清單 (竹虎京堂 - 50項) ===
+    // === 2. 客戶常用清單 (九丁目) ===
     const frequentCodes = [
-        "C01", "C14E", "C19B", "C58", "C28A", "C41A", "D18", "C61", "C24A", "C14DA",
-        "D64BA", "C53B", "C10A", "D53", "C14G", "C58AC", "D59H", "C39", "C39A", "D41AB",
-        "D50B", "C87B", "C36D", "D10", "D48G", "D16", "D39GA", "E11", "A07C", "D69",
-        "C45", "C25A", "C18A", "D82", "C04", "C25", "C31F", "C18E", "D47B", "D09D",
-        "C26C", "C44C", "D57A", "E08AA", "D84", "C51", "C30C", "D88DA", "C03", "D62A"
+        "C01", "D46AA", "D21", "B01", "D10KC",
+        "D12A", "C43", "E06A", "C27A", "D10EAA",
+        "C53B", "C62", "C28B", "C45", "C14E",
+        "C14I", "C05A", "C05", "D64BA", "H01F",
+        "H01G", "D10ED", "D88AD", "C41A", "C38",
+        "E04C", "E02", "C04", "C19C", "C36E"
     ];
 
     // === 3. 完整資料庫 (V4.6) ===
@@ -188,7 +188,7 @@
         { cat: "肉類1", items: ["手羽明太子雞翼 (E03)", "手羽芝士豬肉雞翼 (E03A)", "生雞膝軟骨粒 (D88C)", "芝麻雞翼 (E03F)", "明太子雞翼（日本） (E03K)", "無激素雞扒 (M008C)", "日式炭燒雞扒 (E03JA)", "煙鴨胸 (D76A)", "雞扒 (M008E)", "雞中翼 (M008D)", "華味鳥雞腎 (D88GA)", "華味鳥雞心肝 (D88GB)", "CP炸雞軟骨粒1kg (D88DA)", "鹽酥雞 (E11C)", "雞骨腸 (E02)"] },
         { cat: "肉類2", items: ["免治雞肉棒 (D88AD)", "開邊生雞翼串 (D88E)", "炭燒雞腿肉串（盒裝） (D88A)", "秘制五花腩串（碟裝） (D88FG)", "秘制雞皮串（碟裝） (D88FD)", "雞腿肉串（碟裝） (D88FE)", "雞軟骨串 (D88)", "生雞皮串（盒裝） (D88AB)", "生雞腎串(盒裝) (D88AC)", "秘制肥腸（碟裝） (D88FB)", "雞腎串（碟裝） (D88FF)", "羊肉串（碟裝） (D88FH)", "雞亦串（碟裝） (D88FC)"] },
         { cat: "肉類3", items: ["中國鵝肝 (D30)", "原隻紅酒鵝肝 (D30A)", "鵝肝片 (D30D)", "金磚鵝肝片（紅酒味） (D30E)", "一口牛肉粒 (M004)", "和牛漢堡扒 (H02AA)", "和牛腿肉片 (M003M)", "A4和牛肉眼扒 (M003LA)", "A4和牛肉眼（抄碼） (M003LAA)", "中國鴨肝 (D30B)", "美國肥牛片2K裝 (M003BD)", "巴西牛舌(直條) (M007)", "A4和牛西冷扒 (M003LB)", "A4和牛西冷（抄碼） (M003LBA)"] },
-        { cat: "肉類4", items: ["黑豚肉眼（日本） (M006B)", "內蒙古法式羊扒 (M010)", "一口豚肉 (M004B)", "杜洛克風乾火腿片 (D99)", "日式叉燒 (E06)", "日式芝士漢堡扒60g (H02A)", "豬軟骨 (E05)", "日式漢堡扒 (H02)", "煙肉片 (D76B)", "日式叉燒片 (E06A)", "豚肉片2K裝 (M010A)", "雞骨腸 (E02)", "香芋地瓜丸 (C30C)", "炸魷魚圈 (D41C)"] },
+        { cat: "肉類4", items: ["黑豚肉眼（日本） (M006B)", "內蒙古法式羊扒 (M010)", "一口豚肉 (M004B)", "杜洛克風乾火腿片 (D99)", "日式叉燒 (E06)", "日式芝士漢堡扒60g (H02A)", "豬軟骨 (E05)", "日式漢堡扒 (H02)", "煙肉片 (D76B)", "日式叉燒片 (E06A)", "豚肉片2K裝 (M010A)", "雞骨腸 (E02)", "香芋地瓜丸 (C30C)", "炸魷魚圈 (D41C)", "日式叉燒片 (E06A)"] },
         { cat: "日式炸物1", items: ["20g吉列蝦(白糠) (D10E)", "25g吉列蝦（黃糠） (D10EAA)", "KS 芝士年糕 (D65)", "日本吉列蠔 (D64BA)", "日本炸年糕串 (D65C)", "中國吉列蠔 (D64B)", "一口炸芝士 (D65AA)", "包裝吉列豬扒130g (E04EA)", "吉列魚柳 (D61F)", "原箱吉列豬扒130g (E04C)", "日式煎菜肉餃子 (E08)", "黑毛豬炸肉餅 (H03B)", "熔岩海膽魚餅 (D01A)", "炸池魚仔 (D62A)", "無頭甜蝦L50 (D10KC)"] },
         { cat: "日式炸物2", items: ["吉列牛肉薯餅 (H01A)", "甘栗紫薯餅 (H01F)", "吉列南瓜薯餅 (H01E)", "蟹肉忌廉薯餅 (H01)", "芝士薯餅 (H01G)", "雞皮餃子 (E08AA)", "冷凍面包糠 (C60A)", "炸蟹鉗 (D60F)", "拉絲芝士碎 (D65B)", "日式章魚燒50粒 (E09A)", "日式炸雞塊 (E11)", "天婦羅魷魚500g (D39GA)", "車打芝士片12片 (D65BB)", "雙色芝士碎 (D65BA)"] },
         { cat: "日式甜品/飲料", items: ["忌廉泡芙 (C29C)", "紅豆和果子 (C30B)", "朱古力泡芙 (C29)", "芝士蛋糕 (C47C)", "獺祭三割九分純米大吟醸 (W004)", "京姬匠純米大吟醸 (W005)", "大嶺三粒米山田錦 (W003A)", "ORION沖繩支裝生啤 (W017A)", "富士山威士忌 (W019)", "木村富士山柚子梳打 (G04F)", "波子汽水(白檸) (G03D)", "木村蜜瓜味汽水 (G04A)", "木村水蜜桃味汽水 (G04B)", "菠蘿波子汽水 (G03E)", "木村蘋果味汽水 (G04)", "Sangaria氣水 橙味 (G01AA)", "Sangaria氣水 原味 (G01BA)", "Sangaria氣水 蜜瓜味 (G01CA)", "Sangaria氣水 提子味 (G01DA)", "日本番薯 (C05A)"] },
@@ -322,10 +322,11 @@
         renderAll(text);
     }
 
-    // === V5.0 核心邏輯: updateQty 攔截 ===
+    // === V5.1 修正版: updateQty 邏輯 ===
     function updateQty(code, delta) {
-        // 1. 如果是增加數量，且當前數量為 0 (第一次點擊)，且是稱重產品 -> 觸發彈窗
-        if (delta > 0 && (!cart[code] || cart[code] === 0) && weightedProducts.includes(code)) {
+        // 1. 如果是增加數量，且當前數量為 0 (第一次點擊)，且是稱重產品，且尚未選擇單位
+        //    -> 觸發彈窗
+        if (delta > 0 && (!cart[code] || cart[code] === 0) && weightedProducts.includes(code) && !cartUnits[code]) {
             pendingProductCode = code;
             unitModal.show();
             return; // 暫停執行，等待用戶選擇
