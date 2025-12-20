@@ -30,7 +30,6 @@
         .p-name { font-size: 1.1rem; font-weight: 700; color: #000; line-height: 1.3; margin-bottom: 2px; }
         .p-code { font-size: 0.85rem; color: #888; font-weight: normal; font-family: Arial, sans-serif; }
         
-        /* 數量控制區 V5.2 */
         .qty-control { display: flex; align-items: center; background: #fff; border: 1px solid #ced4da; border-radius: 8px; width: 120px; justify-content: space-between; height: 38px; flex-shrink: 0; overflow: hidden; }
         .qty-btn { width: 35px; height: 100%; border-radius: 0; background: #f8f9fa; color: #212529; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 1.2rem; user-select: none; border: none; }
         .qty-btn:active { background: #ffc107; }
@@ -54,7 +53,6 @@
         .modal-header { background-color: #212529; color: white; }
         .modal-title { font-weight: bold; color: #ffc107; }
         
-        /* 單位選擇 Modal V5.2 */
         .unit-btn-group { display: flex; gap: 15px; justify-content: center; padding: 20px; }
         .btn-unit-select { flex: 1; padding: 15px; border: 2px solid #ddd; border-radius: 10px; background: white; font-weight: bold; font-size: 1.1rem; text-align: center; cursor: pointer; transition: all 0.2s; }
         .btn-unit-select:hover { background-color: #f8f9fa; }
@@ -149,11 +147,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // === 1. 稱重產品清單 (竹虎京堂適用) ===
-    // 包含 D18 (大劍魚腩) 以及通用的稱重產品
+    // === 1. 全局稱重產品清單 (V5.3 標準) ===
+    // 規則：D18移除，加入B01，其餘保持
     const weightedProducts = [
-        "D18", "D18A", "D61B", "D61C", "D17E", 
-        "D17C", "D71", "D70", "B01"
+        "D61B", "D61C", "D18A", "D17E", "D17C", "B01"
     ];
 
     // === 2. 客戶常用清單 (竹虎京堂 - 50項) ===
@@ -320,12 +317,14 @@
         renderAll(text);
     }
 
-    // === V5.2 updateQty & B01 logic ===
+    // === V5.3 最終邏輯: updateQty & B01 Logic ===
     function updateQty(code, delta) {
+        // 如果是增加數量，且當前數量為 0 (第一次點擊)，且是稱重產品，且尚未選擇單位
+        // (D18 已從 weightedProducts 移除，所以不會進來)
         if (delta > 0 && (!cart[code] || cart[code] === 0) && weightedProducts.includes(code) && !cartUnits[code]) {
             pendingProductCode = code;
             
-            // B01 邏輯: 顯示 "隻" 否則顯示 "件/包"
+            // B01 顯示 "隻"，其他顯示 "件/包"
             const pieceBtn = document.getElementById('btn-unit-piece');
             if (code === 'B01') {
                 pieceBtn.innerHTML = '<i class="bi bi-box-seam"></i> 隻<br>(默認)';
