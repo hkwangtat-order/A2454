@@ -143,25 +143,10 @@
         document.getElementById('displayClientCode').innerText = customerCode;
         document.title = customerName + " - 專用訂貨單";
 
-        fullCatalog.forEach(cat => {
-            cat.items.forEach(itemStr => {
-                const match = itemStr.match(/^(.*)\s*\(([A-Za-z0-9]+)\)$/);
-                if (match) {
-                    const name = match[1]; 
-                    const code = match[2]; 
-                    productMap[code] = { fullName: itemStr, name: name, code: code };
-                }
-            });
-        });
-
-        loadCart(); // V6.0 Auto Load
-
-        renderFrequent();
-        renderAll();
-        cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
-        unitModal = new bootstrap.Modal(document.getElementById('unitSelectionModal')); 
+        fullCatalog.forEach(c=>{c.items.forEach(i=>{const m=i.match(/^(.*)\s*\(([A-Za-z0-9]+)\)$/);if(m)productMap[m[2]]={fullName:i,name:m[1],code:m[2]}})});
+        loadCart(); renderFrequent(); renderAll();
+        cartModal=new bootstrap.Modal(document.getElementById('cartModal')); unitModal=new bootstrap.Modal(document.getElementById('unitSelectionModal'));
     }
-
     function loadCart() {
         const c=localStorage.getItem('orderCart_'+customerCode), u=localStorage.getItem('orderUnits_'+customerCode);
         if(c)try{cart=JSON.parse(c)}catch(e){} if(u)try{cartUnits=JSON.parse(u)}catch(e){}
